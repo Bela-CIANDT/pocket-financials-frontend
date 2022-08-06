@@ -1,23 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import Appbar from './components/Appbar';
+import Dropdown from './components/Dropdown';
+import Table from './components/Table';
 
 function App() {
+
+  const [data, setData] = useState([]);
+  const fetchData = () => {
+
+    const url = 'http://localhost:8080/api/v1/post/list';
+
+    axios({
+      method: 'post',
+      url: url,
+      data: {
+        "startingDate": "2020-03-12",
+        "endingDate": "2022-08-05"
+      }
+    }).then(res => {
+      console.log(res.data.content)
+      setData(res.data.content)
+    });
+
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Appbar/>
+      <Table/>
     </div>
   );
 }
