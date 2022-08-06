@@ -1,9 +1,13 @@
 import './App.css';
+import './styles/tablestyles.css';
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import Appbar from './components/Appbar';
 import Dropdown from './components/Dropdown';
 import Table from './components/Table';
+
 
 function App() {
 
@@ -33,7 +37,12 @@ function App() {
   return (
     <div className="App">
       <Appbar/>
+      <div class="table-wrapper">
+      <Dropdown/>
+      </div>
+      <div class="table-wrapper">
       <Table/>
+      </div>
     </div>
   );
 }
