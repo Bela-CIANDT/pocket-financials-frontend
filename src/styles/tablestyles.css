@@ -1,7 +1,10 @@
-.table-wrapper {
+
+.table-wrapper, .filter-wrapper {
   
     padding-right: 7%;
     padding-left: 7%;
-    padding-top: 3%;
+    padding-top: 1%;
+    padding-bottom: 3%;
 
   }
+

@@ -1,5 +1,6 @@
 import './App.css';
 import './styles/tablestyles.css';
+import './styles/datePicker.css'
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -40,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <Appbar/>
-      <div class="table-wrapper">
+      <div class="filter-wrapper">
       <Dropdown/>
       <input type="date" value={beginDate} onChange={value => {setBeginDate(value.target.value)}}/>
       <input type="date" value={endDate} onChange={value => {setEndDate(value.target.value)}}/>
