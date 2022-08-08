@@ -1,6 +1,10 @@
 import { React, useState, useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
 
+function getTypeName(params) {
+    return `${params.row.type.name || ''}`;
+}
+
 const columns = [
     {
         field: 'date',
@@ -10,7 +14,9 @@ const columns = [
     {
         field: 'type',
         headerName: 'Type',
+        valueGetter: getTypeName,
         width: 200,
+
     },
     {
         field: 'description',
