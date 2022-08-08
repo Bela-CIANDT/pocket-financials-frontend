@@ -8,10 +8,12 @@ import Appbar from './components/Appbar';
 import Dropdown from './components/Dropdown';
 import Table from './components/Table';
 
-
 function App() {
 
   const [data, setData] = useState([]);
+  const [beginDate, setBeginDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [type, setType] = useState('');
   const fetchData = () => {
 
     const url = 'http://localhost:8080/api/v1/post/list';
@@ -20,8 +22,8 @@ function App() {
       method: 'post',
       url: url,
       data: {
-        "startingDate": "2020-03-12",
-        "endingDate": "2022-08-05"
+        "startingDate": beginDate,
+        "endingDate": endDate
       }
     }).then(res => {
       console.log(res.data.content)
@@ -32,16 +34,19 @@ function App() {
 
   useEffect(() => {
     fetchData()
-  }, []);
+  }, [beginDate, endDate]);
+
 
   return (
     <div className="App">
       <Appbar/>
       <div class="table-wrapper">
       <Dropdown/>
+      <input type="date" value={beginDate} onChange={value => {setBeginDate(value.target.value)}}/>
+      <input type="date" value={endDate} onChange={value => {setEndDate(value.target.value)}}/>
       </div>
       <div class="table-wrapper">
-      <Table/>
+      <Table data={data}/>
       </div>
     </div>
   );

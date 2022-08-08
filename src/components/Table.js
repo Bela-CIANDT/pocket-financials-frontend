@@ -1,7 +1,5 @@
 import { React, useState, useEffect } from 'react'
 import { DataGrid } from '@mui/x-data-grid';
-import axios from 'axios';
-
 
 const columns = [
     {
@@ -34,39 +32,15 @@ const columns = [
       }
 ]
 
-const DataTable = () => {
-
-    const [tableData, setTableData] = useState([])
-
-    const fetchData = () => {
-
-        const url = 'http://localhost:8080/api/v1/post/list';
-
-        axios({
-            method: 'post',
-            url: url,
-            data: {
-                "startingDate": "2020-03-12",
-                "endingDate": "2022-08-05"
-            }
-        }).then(res => {
-            console.log(res.data.content)
-            setTableData(res.data.content)
-        });
-
-    }
-
-    useEffect(() => {
-        fetchData()
-    }, []);
+const DataTable = (props) => {
 
     return (
         <div style={{ height: 700, width: '100%' }}>
-            <DataGrid
-                rows={tableData}
+            {props.data==null ? 'No data is found': <DataGrid
+                rows={props.data}
                 columns={columns}
                 pageSize={10}
-            />
+            />}
         </div>
     )
 
